@@ -1,0 +1,8 @@
+.ui.menu {
+  border-radius: 0;
+}
+
+.ui.menu > .container,
+.ui.menu > .grid {
+  justify-content: space-around;
+}
