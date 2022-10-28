@@ -27,7 +27,8 @@ function App() {
   const [contact, setContacts] = useState([]);
 
   const addContactHandler = (cnt) => {
-    console.log(cnt);
+    // console.log(cnt);
+    setContacts([...contact, cnt]);
   };
   return (
     <>
