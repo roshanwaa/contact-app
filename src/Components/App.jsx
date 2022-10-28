@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import { Header } from './Header';
 
@@ -29,7 +30,14 @@ function App() {
 
   const addContactHandler = (cnt) => {
     // console.log(cnt);
-    setContacts([...contact, cnt]);
+    setContacts([...contact, { id: uuidv4(), ...cnt }]);
+  };
+
+  const removeContactHandler = (id) => {
+    const newContact = contact.filter((contact) => {
+      return contact.id !== id;
+    });
+    setContacts(newContact);
   };
 
   useEffect(() => {
@@ -47,7 +55,7 @@ function App() {
       <div className="ui container">
         <AddContact addContactHandler={addContactHandler} />
         <br />
-        <ContactList contacts={contact} />
+        <ContactList contacts={contact} getContactId={removeContactHandler} />
       </div>
     </>
   );
