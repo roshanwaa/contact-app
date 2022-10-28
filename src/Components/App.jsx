@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Header } from './Header';
 
@@ -23,6 +23,7 @@ function App() {
   //     email: 'ayushkrishna@gmail.com',
   //   },
   // ];
+  const LOCAL_STORAGE_KEY = 'Contacts';
 
   const [contact, setContacts] = useState([]);
 
@@ -30,6 +31,16 @@ function App() {
     // console.log(cnt);
     setContacts([...contact, cnt]);
   };
+
+  useEffect(() => {
+    const retrieveContact = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    setContacts(retrieveContact);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contact));
+  }, [contact]);
+
   return (
     <>
       <Header />
